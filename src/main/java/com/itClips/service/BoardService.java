@@ -5,7 +5,6 @@ import java.util.List;
 import com.itClips.domain.BoardVO;
 import com.itClips.domain.Criteria;
 
-
 public interface BoardService {
 	
 	public void register(BoardVO board);
