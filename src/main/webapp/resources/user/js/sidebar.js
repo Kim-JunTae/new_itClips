@@ -1,12 +1,12 @@
 /**
  *  sidebar 자바스크립트
  */
-<!-- 회원가입 페이지로 -->
+// 회원 가입 페이지로
 function goJoinPage() {
-	location.href="join";
+	location.href="/user/join";
 }
 	
-<!-- 로그인 비동기식 검사 -->
+// 로그인 검사
 $(function(){
 	$("#loginBtn").click(function(){
 		var user_id = $("#id").val();

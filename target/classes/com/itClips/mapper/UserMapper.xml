@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 패키지 경로 -->
+<mapper namespace="com.itClips.mapper.UserMapper">
+	
+	<!-- LoginController -->
+	<!-- 로그인 -->
+	<select id="login" resultType="com.itClips.domain.UserVO">
+		SELECT * FROM itClips_user
+		WHERE id = #{id}
+		AND pw = #{pw}
+		AND status = 0
+	</select>
+	
+	<!-- JoinController -->
+	<!-- 동적 쿼리로 합치자 -->
+	<!-- 중복 검사 동적 쿼리 -->
+	<!-- id 중복 검사 -->
+	<select id="get_user" resultType="com.itClips.domain.UserVO">
+		SELECT * FROM itClips_user
+		WHERE id = #{id}
+	</select>
+	
+	<!-- nickname 중복 검사 -->
+	<select id="get_nickname" resultType="com.itClips.domain.UserVO">
+		SELECT * FROM itClips_user
+		WHERE nickname = #{nickname}
+	</select>
+	
+	<!-- email 중복 검사 -->
+	<select id="get_email" resultType="com.itClips.domain.UserVO">
+		SELECT * FROM itClips_user
+		WHERE email = #{email}
+	</select>
+	
+	<!-- 가입 -->
+	<insert id="join" parameterType="com.itClips.domain.UserVO">
+		INSERT INTO itClips_user(id, pw, nickname, email, birthday, gender, join_Date, grade, category)
+		VALUES(#{id}, #{pw}, #{nickname}, #{email}, #{birthday}, #{gender}, sysdate, #{grade}, #{category})
+	</insert>
+	
+	<!-- 수정 -->
+	
+	<!-- 탈퇴 -->
+
+</mapper>

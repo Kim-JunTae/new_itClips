@@ -152,7 +152,7 @@
    </div>
    <!-- /.modal -->
    
-  <script type="text/javascript" src="/resources/js/reply.js"></script>
+  <script type="text/javascript" src="/resources/admin/js/reply.js"></script>
   <script type="text/javascript">
   
   	//console.log("===================================");

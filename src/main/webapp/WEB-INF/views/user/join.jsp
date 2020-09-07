@@ -7,7 +7,7 @@
 	<title>회원가입</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="resources/assets/css/main.css" />
+	<link rel="stylesheet" href="/resources/user/assets/css/main.css" />
 	<style>
 		.blue_txt{color:#00f; font-weight: bold;}
 		.red_txt{color:#f00; font-weight: bold;}
@@ -204,11 +204,11 @@
 	
 
 	<!-- Scripts -->
-	<script src="resources/assets/js/jquery.min.js"></script>
-	<script src="resources/assets/js/browser.min.js"></script>
-	<script src="resources/assets/js/breakpoints.min.js"></script>
-	<script src="resources/assets/js/util.js"></script>
-	<script src="resources/assets/js/main.js"></script>
-	<script src="resources/js/join.js"></script>
+	<script src="/resources/user/assets/js/jquery.min.js"></script>
+	<script src="/resources/user/assets/js/browser.min.js"></script>
+	<script src="/resources/user/assets/js/breakpoints.min.js"></script>
+	<script src="/resources/user/assets/js/util.js"></script>
+	<script src="/resources/user/assets/js/main.js"></script>
+	<script src="/resources/user/js/join.js"></script>
 	</body>
 </html>

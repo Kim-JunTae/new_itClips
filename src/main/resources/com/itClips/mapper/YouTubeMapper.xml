@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itClips.mapper.YouTubeMapper">
+	<!-- YouTubeController -->
+	<!-- 해당 영화 YouTube 리스트 가져오기 -->
+	<select id="getYouTubeList" resultType="com.itClips.domain.YouTubeVO">
+		SELECT * FROM ITCLIPS_YOUTUBE
+		WHERE movieId = #{movieId}
+	</select>
+	
+	<!-- Scheduler -->
+	<!-- YouTube 영상 중복 검사 -->
+	<select id="check" resultType="com.itClips.domain.YouTubeVO">
+		SELECT * FROM ITCLIPS_YOUTUBE
+		WHERE videoId = #{videoId}
+	</select>
+	
+	<!-- 저장 -->
+	<insert id="insert">
+		INSERT INTO ITCLIPS_YOUTUBE(videoId, title, description, thumbnail, publishedAt, channelId, viewCount, likeCount, dislikeCount, favoriteCount, commentCount, movieId)
+		VALUES(#{videoId}, #{title}, #{description}, #{thumbnail}, #{publishedAt}, #{channelId}, #{viewCount}, #{likeCount}, #{dislikeCount}, #{favoriteCount}, #{commentCount}, #{movieId})
+	</insert>
+</mapper>

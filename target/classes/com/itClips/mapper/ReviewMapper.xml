@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.itClips.mapper.ReviewMapper">
+  
+  <!-- Scheduler -->
+	<!-- 리뷰 저장 -->
+	<insert id="insert">
+		INSERT INTO ITCLIPS_REVIEW(review_id, netizenName, grade, review, reviewDate, movieId)
+		VALUES(review_seq.NEXTVAL, #{netizenName}, #{grade}, #{review}, #{reviewDate}, #{movieId})
+	</insert>
+	
+	<!-- 해당 영화 리뷰 리스트 가져오기 -->
+	<select id="getReviewList" resultType="com.itClips.domain.ReviewVO">
+		SELECT * FROM ITCLIPS_REVIEW
+		WHERE movieId = #{movieId}
+	</select>
+	
+	<!-- 내용이 있는 해당 영화 리뷰 리스트 6개만 가져오기 -->
+	<!-- 내용이 있는 해당 영화 리뷰 리스트 6개: 컨트롤러에서 하기-->
+	<select id="reviewJSON" resultType="com.itClips.domain.ReviewVO">
+		SELECT * FROM ITCLIPS_REVIEW
+		WHERE movieId = #{movieId}
+		AND review IS NOT NULL
+		ORDER BY REVIEWDATE DESC
+	</select>
+	
+	<!-- <select id="reviewJSON" resultType="mybatis.vo.BoxOfficeVO" parameterType="String">
+		SELECT * FROM ITCLIPS_REVIEW
+		WHERE movieId = #{movieId}
+		AND review IS NOT NULL
+		AND rownum BETWEEN 1 AND 4
+		ORDER BY REVIEWDATE DESC
+	</select> -->
+	
+	<!-- 리뷰 중복 검사 : 해당영화에 한 네티즌의 한 리뷰만 -->
+	<select id="check" resultType="com.itClips.domain.ReviewVO">
+		SELECT * FROM ITCLIPS_REVIEW
+		WHERE movieId = #{movieId}
+		AND netizenName = #{netizenName}
+	</select>
+  
+  </mapper>

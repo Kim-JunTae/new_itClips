@@ -1,9 +1,6 @@
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.5
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2020.08.</strong>
+    All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -13,16 +10,11 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-	/* $(document).ready(function(){
-		$('#dataTable-example').DataTable({
-			responsive: true
-		});
-		$(".sidebar-nav")
-		.attr("class", "sidebar-nav navbar-collapse collapse")
-		.attr("aria-expanded", 'false')
-		.attr("style", "height:1px");
-	}); */
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
+
 </body>
 </html>

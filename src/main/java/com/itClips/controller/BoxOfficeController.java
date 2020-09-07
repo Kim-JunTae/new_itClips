@@ -63,7 +63,7 @@ public class BoxOfficeController {
 		log.info("getBoxOfficeList");
 		BoxOfficeVO[] result = service.getBoxOfficeList();
 		
-		System.out.println(result);
+		//System.out.println(result);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }

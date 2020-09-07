@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>MoviePoster</title>
+    <link rel="stylesheet" href="/resources/user/assets/css/main.css"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
 			a {
 				color: #8ff;
@@ -18,8 +20,11 @@
 			}
 
 			.element {
-				width: 120px;
-				height: 160px;
+				width:100%;
+				height:100%;
+				max-width:120px;
+				max-height:160px;
+				background-size: 120px 160px;
 				box-shadow: 0px 0px 12px rgba(0,0,0,0.5);
 				border: 1px solid rgba(0,0,0,0.75);
 				font-family: Helvetica, sans-serif;
@@ -83,13 +88,16 @@
 </head>
 <body>
 <body>
-<script src="resources/js/three.js"></script>
-<script src="resources/js/tween.min.js"></script>
-<script src="resources/js/TrackballControls.js"></script>
-<script src="resources/js/CSS3DRenderer.js"></script>
+<script src="/resources/user/js/three.js"></script>
+<script src="/resources/user/js/tween.min.js"></script>
+<script src="/resources/user/js/TrackballControls.js"></script>
+<script src="/resources/user/js/CSS3DRenderer.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-<div id="info"><a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table. <a href="https://plus.google.com/113862800338869870683/posts/QcFk5HrWran" target="_blank" rel="noopener">info</a>.</div>
+<div>
+	<input type="button" style="flex: 0.1;" value="intro" onclick="location.href='/'">
+	<input type="button" style="flex: 0.1;" value="adminHome" onclick="location.href='/adminHome'">
+	<input type="button" style="flex: 0.1;" value="userHome" onclick="location.href='/userHome'">
+</div>
 <div id="container"></div>
 <div id="menu">
     <button id="table">TABLE</button>
@@ -98,10 +106,35 @@
     <button id="grid">GRID</button>
 </div>
 
-
-
-
 <script>
+
+	var moviePosterList = null;
+/* 	
+	function ajaxGetMoviePoster(){
+		return $.ajax({
+			url: "getBoxOfficeJSON",
+			type: "GET",
+			dataType: "JSON",
+			async: false,
+			success: function(data){
+				//배열 선언
+				moviePosterList = new Array();
+				
+				//배열 초기화
+				//movieId, title, src
+				for(var i=0; i<118; i++){
+					moviePosterList.push(data[i].src);
+				}
+				
+				console.log(moviePosterList);
+			}
+		});
+	} */
+	
+	$(document).ready(function(){
+		
+	});
+	
 	var table = [
 	    "H", "Hydrogen", "1.00794", 1, 1,
 	    "He", "Helium", "4.002602", 18, 1,
@@ -229,6 +262,11 @@
 	var objects = [];
 	var targets = { table: [], sphere: [], helix: [], grid: [] };
 	
+	if(moviePosterList != null){
+		init();
+		animate();
+	}
+	
 	init();
 	animate();
 		
@@ -351,11 +389,81 @@
 	}
 	
 	function simpleObjectsLayout() {
-	    for ( var i = 0; i < table.length; i += 5 ) {
-			var element = document.createElement( 'div' );
+		var count = 0;
+		
+		$.ajax({
+			url: "getBoxOfficeJSON",
+			type: "GET",
+			dataType: "JSON",
+			async: false,
+			success: function(data){
+				//배열 선언
+				moviePosterList = new Array();
+				
+				//배열 초기화
+				//movieId, title, src
+				for(var i=0; i<data.length; i++){
+					moviePosterList.push(data[i].src);
+				}
+				
+				//console.log(moviePosterList);
+			}
+		});
+		
+		//console.log(moviePosterList);
+		
+		for ( var i = 0; i < table.length; i += 5 ) {
+	    	
+			var url = "url('";
+	    		url = url + moviePosterList[count];
+	    		url = url + "')";
+	    		
+	    	//var url = moviePosterList[count];
+	    	console.log(url);
+	    	count++;
+	    	
+	    	var element = document.createElement( 'img' );
+	        element.className = 'element';
+	        element.style.backgroundImage = url;
+	        /* element.style.maxWidth = '120px';
+	        element.style.maxHeight = '160px';
+	        element.style.width = '100%';
+	        element.style.height = '100%'; */
+	    	
+	        /* var maxWidth = 160;
+	    	var maxHeight = 120;
+	    	var ratio = 0;
+	    	var width = $(".element").width();
+	    	var height = $(".element").height();	        
+	        
+	    	if(width > maxWidth){
+	    		ratio = maxWidth / width;
+	    		element.css("width", maxWidth);
+	    		element.css("height", height*ratio);
+	    		height = height * ratio;
+	    		width = width * ratio;
+	    	}
+	        
+	    	if(height > maxWidth){
+	    		ratio = maxWidth / height;
+	    		element.css("height", maxHeight);
+	    		element.css("width", width*ratio);
+	    		height = height * ratio;
+	    		width = width * ratio;
+	    	} */
+	    	
+	        url = "";
+			/* var element = document.createElement( 'div' );
 			        element.className = 'element';
 			        element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+			        element.innerHTML ="<h2>AAA</h2>"; 
 			      
+			var moviePoster = document.createElement('img');
+					moviePoster.className = 'moviePoster';
+					moviePoster.src=moviePosterList[count];
+					count++;
+					element.appendChild(moviePoster);
+					
 			var number = document.createElement( 'div' );
 			        number.className = 'number';
 			        number.textContent = ( i / 5 ) + 1;
@@ -369,9 +477,9 @@
 			var details = document.createElement( 'div' );
 			        details.className = 'details';
 			        details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
-			        element.appendChild( details );
+			        element.appendChild( details ); */
 			
-	        $(document).ready(function(){
+	        /* $(document).ready(function(){
 	    		$.ajax({
 	    			url: "getBoxOfficeJSON",
 	    			type: "GET",
@@ -384,7 +492,7 @@
 					        element.appendChild(boxOffices);
 	    			}
 	    		});
-	    	});       
+	    	}); */       
 	        
 			var object = new THREE.CSS3DObject( element );
 			        object.position.x = Math.random() * 4000 - 2000;
@@ -465,6 +573,7 @@
 	
 	    }
 	}
+
 </script>
 
 

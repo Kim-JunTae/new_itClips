@@ -48,9 +48,9 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="userHome" class="logo"><strong><span>itClips</span></strong></a>
+									<a href="/" class="logo"><strong><span>itClips</span></strong></a>
 									<!-- NAV : 영화 목록 보기(three.js), 영화 분석 페이지 -->
-									<input type="button" style="flex: 0.1;" value="무비 포스터로!" onclick="location.href='moviePoster'">
+									<input type="button" style="flex: 0.1;" value="무비 포스터로!" onclick="location.href='movie/moviePoster'">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<!-- 로그인 닉네임 체크 -->
 									<c:if test="${sessionScope.nickname ne null}">
@@ -331,7 +331,7 @@
 					  }).done(function(data){
 						console.log(data);
 						//2. movideId로 ITCLIPS_REVIEW의 최신(REVIEW_DATE가 최근이고, 내용이 null이 아닌 것)내용 가져오기
-						  for(var i=0; i<data.length; i++){
+						  for(var i=0; i<6; i++){
 							  var review = "review" + i;
 							  var content = data[i].netizenName+"&nbsp;&nbsp;&nbsp;";
 							  	  content += data[i].grade + "/10 <br>"
