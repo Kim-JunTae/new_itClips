@@ -57,8 +57,8 @@
 										<span>${sessionScope.nickname}님 안녕하세요</span>
 									</c:if>
 									
-									<form method="post" action="#">
-										  <input type="text" class="form-control" placeholder="영화 분석 페이지로">
+									<form id="searchForm" method="post" action="/movie/list">
+										  <input type="text" name="keyword" class="form-control" placeholder="영화 분석 페이지로">
 									</form>
 									<input type="button" style="flex: 0.1;" id="analysis" value="search">
 								</header>

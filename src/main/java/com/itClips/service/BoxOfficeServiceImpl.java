@@ -31,7 +31,12 @@ public class BoxOfficeServiceImpl implements BoxOfficeService{
 	@Override
 	public String getMovieId(String title) {
 		log.info("getMovieId..." + title);
-		return mapper.getMovieId(title);
+		String result = mapper.getMovieId(title);
+		if(result != null) {
+			return result;
+		}else{
+			return "none";
+		}
 	}
 
 	@Override

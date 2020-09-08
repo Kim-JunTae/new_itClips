@@ -1,4 +1,4 @@
-package com.itClips.service;
+package com.itClips.util;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;

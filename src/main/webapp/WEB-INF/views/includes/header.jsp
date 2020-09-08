@@ -72,10 +72,10 @@
         <a href="/" class="nav-link">intro</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="adminHome" class="nav-link">AdminHome</a>
+        <a href="/adminHome" class="nav-link">AdminHome</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="userHome" class="nav-link">UserHome</a>
+        <a href="/userHome" class="nav-link">UserHome</a>
       </li>
     </ul>
   </nav>
@@ -84,8 +84,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="adminHome" class="brand-link">
-      <span class="solid fa-film"></span>
+    <a href="/adminHome" class="brand-link">
+      <span class="icon solid fas fa-film"></span>
       <span class="brand-text font-weight-light">itClips_AdminPage</span>
     </a>
 
@@ -94,7 +94,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">관리자</a>
+          <a href="#" class="d-block">Admin</a>
         </div>
       </div>
 

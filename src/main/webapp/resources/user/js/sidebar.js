@@ -28,7 +28,7 @@ $(function(){
 		//alert(data);
 		
 		$.ajax({
-			url: "checkLogin",
+			url: "/checkLogin",
 			type: "POST",
 			data: data,
 			dataType: "JSON"
@@ -38,7 +38,7 @@ $(function(){
 				$("#result").html(data.res);
 				return;
 			}else{
-				location.href="userHome";
+				location.href="/userHome";
 			}
 		}).fail(function(err){
 			console.log(err);

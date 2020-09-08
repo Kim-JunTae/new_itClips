@@ -85,7 +85,7 @@ public class UserController {
 			log.info("회원가입 실패");
 		}
 		
-		return "redirect:/userHome";
+		return "redirect:/user/join";
 	}
 	
 	//아이디 중복 검사

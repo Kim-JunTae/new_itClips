@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itClips.mapper.KoficMapper">
+	<!-- KoficController -->
+	<!--  -->
+	<select id="getKoficMovieList" resultType="com.itClips.domain.KoficVO">
+		SELECT * FROM ITCLIPS_KOFIC
+	</select>
+	
+	
+	<!-- Scheduler -->
+	
+	<!-- 중복 검사 -->
+	<select id="checkKoficMovie" resultType="com.itClips.domain.KoficVO">
+		SELECT * FROM ITCLIPS_KOFIC
+		WHERE title = #{title}
+	</select>
+	
+	<!-- 저장 전 BoxOfficeMapper를 통해서 
+	"getMovieId" 사용하여 제목 같은 영화 있으면 id 가져오기-->
+	<!-- 저장 -->
+	<insert id="insert">
+		INSERT INTO ITCLIPS_KOFIC(koficId, title, openDt, salesAcc, audiAcc, movieId)
+		VALUES(#{koficId}, #{title}, #{openDt}, #{salesAcc}, #{audiAcc}, #{movieId})
+	</insert>
+</mapper>

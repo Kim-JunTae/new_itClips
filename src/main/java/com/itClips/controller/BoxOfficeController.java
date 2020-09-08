@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itClips.domain.BoxOfficeVO;
 import com.itClips.service.BoxOfficeService;
-import com.itClips.service.Jsoup;
+import com.itClips.util.Jsoup;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
