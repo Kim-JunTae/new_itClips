@@ -28,4 +28,27 @@ public class HomeController {
 		return "adminHome";
 	}
 	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test() {
+		log.info("D3.js Test page");
+		return "d3Test";
+	}
+	
+	@RequestMapping(value = "/test1", method = RequestMethod.GET)
+	public String test1() {
+		log.info("D3.js Test page");
+		return "d3Test_line_chart";
+	}
+	
+	@RequestMapping(value = "/test2", method = RequestMethod.GET)
+	public String test2() {
+		log.info("D3.js Test page");
+		return "d3Test_bar_chart";
+	}
+	
+	@RequestMapping(value = "/test3", method = RequestMethod.GET)
+	public String test3() {
+		log.info("D3.js Test page");
+		return "d3Test_pie_chart";
+	}
 }

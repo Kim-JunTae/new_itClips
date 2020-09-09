@@ -10,4 +10,5 @@ public interface ReviewMapper {
 	public ReviewVO[] reviewJSON(String movieId);
 	
 	public ReviewVO check(String movieId, String netizenName);
+
 }

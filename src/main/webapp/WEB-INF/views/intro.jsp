@@ -22,7 +22,7 @@
 						<ul>
 							<li><a href="adminHome" class="icon solid fa-user-cog"><span class="label">AdminPage</span></a></li>
 							<li><a href="userHome" class="icon solid fa-film"><span class="label">UserPage</span></a></li>
-							<li><a href="https://github.com/Kim-JunTae/ICT_Project_itClips" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							<li><a href="https://github.com/Kim-JunTae/new_itClips" class="icon brands fa-github"><span class="label">Github</span></a></li>
 						</ul>
 					</nav>
 				</header>

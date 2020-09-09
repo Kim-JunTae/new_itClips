@@ -35,51 +35,51 @@ public class Scheduler {
 	//매 1분마다 실행 : * 1 * * * *
 	//매일 새벽 2시 실행 : 0 0 02 * * ?
 
-	@Scheduled(cron="* 01 * * * *")
-	public void insertDB_KoficData() throws Exception{
-		log.info("schedule start... : insertDB_KoficData");
-		log.warn("======================================");
-		KOFIC_API koficApi = new KOFIC_API();
-		int date = 20100101;
-		//String date = "20100101";
-		List<Map<String, String>> koficMoiveList = new ArrayList<Map<String,String>>(); 
-		
-		//for문으로 현재 날짜까지
-		for(int i = date; i < 20200101; i+=10000) {
-			koficMoiveList = koficApi.searchWeeklyBoxOffice(date);
-			log.info(koficMoiveList);
-			
-			for(int j=0; j<koficMoiveList.size(); j++) {
-				//title로 먼저 ITCLIPS_KOFIC Table에 있는지 검사하여 있으면 return;
-				String movieTitle = koficMoiveList.get(j).get("title").toString();
-				log.info("영화제목 : " + movieTitle);
-				
-				//새로운 영화
-				if(koficService.checkKoficMovie(movieTitle)) {
-					KoficVO vo = new KoficVO();
-					vo.setKoficId(koficMoiveList.get(j).get("koficId"));
-					vo.setTitle(koficMoiveList.get(j).get("title"));
-					vo.setOpenDt(koficMoiveList.get(j).get("openDt"));
-					vo.setSalesAcc(koficMoiveList.get(j).get("salesAcc"));
-					vo.setAudiAcc(koficMoiveList.get(j).get("audiAcc"));
-					
-					//제목이 같은 영화가 ITCLIPS_BoxOffice Table에 있는지 검사
-					String movieId = boxOfficeService.getMovieId(movieTitle);
-					log.info(movieTitle + "의 movieId 등록 : " + boxOfficeService.getMovieId(movieTitle));
-					vo.setMovieId(movieId);
-					
-					if(koficService.insert(vo) == 1) {
-						log.info("DB 등록 완료 : " + vo.toString());
-					}else{
-						log.info("DB 등록 실패");
-					}
-					
-				}else{//존재하는 영화
-					log.info(movieTitle + "은 이미 DB에 있는 영화입니다.");
-				}
-			}
-		}
-	}
+//	@Scheduled(cron="* 0 * * * *")
+//	public void insertDB_KoficData() throws Exception{
+//		log.info("schedule start... : insertDB_KoficData");
+//		log.warn("======================================");
+//		KOFIC_API koficApi = new KOFIC_API();
+//		int date = 20100101;
+//		
+//		List<Map<String, String>> koficMoiveList = new ArrayList<Map<String,String>>(); 
+//		//이거 다시 생각해보자. 현재날짜부터 예전 날짜까지로 꺼꾸로 가야될듯
+//		//for문으로 현재 날짜까지
+//		for(int i = date; i < 20200909; i+=10000) {
+//			koficMoiveList = koficApi.searchWeeklyBoxOffice(i);
+//			log.info(koficMoiveList);
+//			
+//			for(int j=0; j<koficMoiveList.size(); j++) {
+//				//title로 먼저 ITCLIPS_KOFIC Table에 있는지 검사하여 있으면 return;
+//				String movieTitle = koficMoiveList.get(j).get("title").toString();
+//				//log.info("영화제목 : " + movieTitle);
+//				
+//				//새로운 영화
+//				if(koficService.checkKoficMovie(movieTitle)) {
+//					KoficVO vo = new KoficVO();
+//					vo.setKoficId(koficMoiveList.get(j).get("koficId"));
+//					vo.setTitle(koficMoiveList.get(j).get("title"));
+//					vo.setOpenDt(koficMoiveList.get(j).get("openDt"));
+//					vo.setSalesAcc(koficMoiveList.get(j).get("salesAcc"));
+//					vo.setAudiAcc(koficMoiveList.get(j).get("audiAcc"));
+//					
+//					//제목이 같은 영화가 ITCLIPS_BoxOffice Table에 있는지 검사
+//					String movieId = boxOfficeService.getMovieId(movieTitle);
+//					//log.info(movieTitle + "의 movieId 등록 : " + boxOfficeService.getMovieId(movieTitle));
+//					vo.setMovieId(movieId);
+//					
+//					if(koficService.insert(vo) == 1) {
+//						log.info("DB 등록 완료 : " + vo.toString());
+//					}else{
+//						log.info("DB 등록 실패");
+//					}
+//					
+//				}else{//존재하는 영화
+//					log.info(movieTitle + "은 이미 DB에 있는 영화입니다.");
+//				}
+//			}
+//		}
+//	}
 	
 	
 //	@Scheduled(cron="0 0 02 * * ?")
