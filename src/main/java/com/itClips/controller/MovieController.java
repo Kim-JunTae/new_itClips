@@ -38,6 +38,13 @@ public class MovieController {
 		log.info("moviePoster");	
 	}
 	
+	//검색어(영화 명으로 검색) 있을 때 없을 때 구분해서 나타낼것
+	@GetMapping(value="/movieGet")
+	public void movieGet() {
+		log.info("movieGet");	
+	}
+	
+	
 	@ResponseBody
 	@GetMapping(value="/getBoxOfficeJSON", 
 	            produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,8 +63,14 @@ public class MovieController {
 	public ResponseEntity<List<Map<String, String>>> getChartData(String movieId){
 		log.info("MovieController_getChartData");
 		
+		String colorList[] = {"#FFA7A7","#FFC19E","#FFE08C","#FAED7D","#CEF279",
+							  "#B7F0B1","#B2EBF4","#B2CCFF","#B5B2FF","#D1B2FF","#FFD9EC"};
+		
 		//test : 영화 반도, 주연 강동원
 		movieId = "125372";
+		
+		//test : movieId 없을 때 어떻게 나오는지 : 다 0 그래프 안그려짐
+		//movieId = "00000";
 		
 		List<Map<String, String>> response = new ArrayList<Map<String,String>>();
 		
@@ -70,7 +83,7 @@ public class MovieController {
 			String reviewCount = reviewService.getChartData(vo);
 			map.put("grade", Integer.toString(i));
 			map.put("value", reviewCount);
-			
+			map.put("color", colorList[i]);
 			log.info("map 등록 : " + map);
 			
 			response.add(map);
@@ -87,6 +100,9 @@ public class MovieController {
 		
 		//test : 영화 반도, 주연 강동원
 		movieId = "125372";
+		
+		//test : movieId 없을 때 어떻게 나오는지
+		//movieId = "00000";
 		
 		Map<String, String> response = new Hashtable<String, String>();
 		
