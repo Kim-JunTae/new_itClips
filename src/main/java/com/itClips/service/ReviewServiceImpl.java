@@ -40,4 +40,22 @@ public class ReviewServiceImpl implements ReviewService{
 		return mapper.check(movieId, netizenName);
 	}
 
+	@Override
+	public String getChartData(ReviewVO vo) {
+		log.info("getChartData..." + vo);
+		return mapper.getChartData(vo);
+	}
+	
+	@Override
+	public String getAvgBeforeFiltering(String movieId) {
+		log.info("getAvgBeforeFiltering..." + movieId);
+		return mapper.getAvgBeforeFiltering(movieId);
+	}
+	
+	@Override
+	public String getAvgAfterFiltering(String movieId) {
+		log.info("getAvgAfterFiltering..." + movieId);
+		return mapper.getAvgAfterFiltering(movieId);
+	}
+	
 }

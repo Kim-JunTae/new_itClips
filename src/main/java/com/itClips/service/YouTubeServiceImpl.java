@@ -23,9 +23,16 @@ public class YouTubeServiceImpl implements YouTubeService{
 	}
 
 	@Override
-	public YouTubeVO check(String videoId) {
+	public boolean check(String videoId) {
 		log.info("check..." + videoId);
-		return mapper.check(videoId);
+		
+		YouTubeVO result = mapper.check(videoId);
+		
+		log.info(result);
+
+		if(result != null)
+			return false;
+		return true;
 	}
 
 	@Override

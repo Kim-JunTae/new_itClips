@@ -26,7 +26,7 @@ public class YouTube_API {
 		//apiurl += "?key=AIzaSyCNY8isLFGtuy_mRV23YNPdJRY0-TrwVZk";	//내꺼
 		//apiurl += "?key=AIzaSyCeJAeERHKe0jkfUaL1czciAEtdHyXGD0A";	//현진씨꺼
 		apiurl += "?key=AIzaSyCNY8isLFGtuy_mRV23YNPdJRY0-TrwVZk";
-		apiurl += "&part=snippet&eventType=completed&type=video&maxResults=5&videoEmbeddable=true";
+		apiurl += "&part=snippet&eventType=completed&type=video&maxResults=2&videoEmbeddable=true";
 		apiurl += "&order=viewCount";
 		apiurl += "&q="+URLEncoder.encode(searchWord,"UTF-8");
 		

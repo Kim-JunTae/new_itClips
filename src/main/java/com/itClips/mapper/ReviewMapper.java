@@ -11,4 +11,9 @@ public interface ReviewMapper {
 	
 	public ReviewVO check(String movieId, String netizenName);
 
+	public String getChartData(ReviewVO vo);
+	
+	public String getAvgBeforeFiltering(String movieId);
+	
+	public String getAvgAfterFiltering(String movieId);
 }
