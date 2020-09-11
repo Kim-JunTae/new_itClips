@@ -1,20 +1,27 @@
 // 리뷰의 평점별 리뷰수를 막대그래프로 표현하자.
-	$(document).ready(function(){ 
+	$(document).ready(function(){
+		/*var movieId = '${movieId}';
+		console.log('${movieId}')
+		console.log(movieId)*/
+		
+		var movieId = document.getElementById('movieId').value;
+		
 		$.ajax({
 			url: "getChartData",
 			type: "GET",
-			dataType: "JSON"
-	
+			dataType: "JSON",
+			data: "movieId="+encodeURIComponent(movieId)
+			
 		}).done(function(data){
 			console.log(data);
 			
-			const width = 600;
-			const height = 600;
+			const width = 400;
+			const height = 400;
 			const margin = {top: 40, left: 40, bottom: 40, right: 40};
 			
 			const x = d3.scaleBand()
-			  // .scaleBand() 그래프의 막대의 반복되는 범위를 정해줍니다.
-			  .domain(data.map(d => d.grade))
+			  // .scaleBand() 그래프의 막대의 반복되는 범위를 정해줍니다..domain(data.map(d => d.grade)).domain(d3.extent(data, d => d.grade))	
+			  .domain(data.map(d => d.grade))		  
 			  // .domain() 각각의 막대에 순서대로 막대에 매핑합니다.
 			  .range([margin.left, width - margin.right])
 			  // 시작위치와 끝 위치로 눈금의 범위를 지정합니다.
@@ -24,7 +31,7 @@
 			// line chart와 동일
 			const y = d3.scaleLinear()
 			  .domain([0, d3.max(data, d => d.value)]).nice()
-			    .range([height - margin.bottom, margin.top]);
+			  .range([height - margin.bottom, margin.top]);
 			 
 			// line chart와 동일
 			const xAxis = g => g
@@ -44,7 +51,8 @@
     		  .style('stroke', '#f5f5f5'));
 
 			// line chart와 동일
-			const svg = d3.select('body').append('svg').style('width', width).style('height', height);
+			const svg = d3.select('#chart')
+			              .append('svg').style('width', width).style('height', height);
 			 
 			svg.append('g').call(xAxis);
 			svg.append('g').call(yAxis);
@@ -87,12 +95,19 @@
 		$.ajax({
 			url: "getAvg",
 			type: "GET",
-			dataType: "JSON"
+			dataType: "JSON",
+			data: "movieId="+encodeURIComponent(movieId)
 	
 		}).done(function(data){
 			console.log(data);
-			$('#AvgBefore').val(data.AvgBeforeFilter);
-			$('#AvgAfter').val(data.AvgAfterFilter);
+			var abf = data.AvgBeforeFilter.substring(0,4);
+			var aaf = data.AvgAfterFilter.substring(0,4);
+			var cr = String(((abf-aaf)/abf)*100).substring(0,4);
+			$('#AvgBefore').append(abf);
+			$('#AvgAfter').append(aaf);
+			$('#ChangeRate').append(cr);
+			/*$('#AvgBefore').val(data.AvgBeforeFilter);
+			$('#AvgAfter').val(data.AvgAfterFilter);*/
 		});
 		
 	});

@@ -14,4 +14,5 @@ public interface BoxOfficeService {
 	
 	public BoxOfficeVO[] getMovieIdList();
 	
+	public BoxOfficeVO[] getMovieList(String keyword);
 }

@@ -51,4 +51,9 @@ public class BoxOfficeServiceImpl implements BoxOfficeService{
 		return mapper.getMovieIdList();
 	}
 	
+	@Override
+	public BoxOfficeVO[] getMovieList(String keyword) {
+		log.info("getMovieList...");
+		return mapper.getMovieList(keyword);
+	}
 }

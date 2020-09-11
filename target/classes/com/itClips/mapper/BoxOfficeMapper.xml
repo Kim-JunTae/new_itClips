@@ -31,4 +31,12 @@
 	<select id="getMovieIdList" resultType="com.itClips.domain.BoxOfficeVO">
 		SELECT movieId FROM ITCLIPS_BOXOFFICE
 	</select>
+	
+	<!-- MovieController -->
+	<!-- keyword로 영화명 검색하여 List 가져오기 -->
+	<select id="getMovieList" resultType="com.itClips.domain.BoxOfficeVO">
+		SELECT * FROM ITCLIPS_BOXOFFICE
+		WHERE title LIKE '%'||#{keyword}||'%'
+	</select>
+	
 </mapper>

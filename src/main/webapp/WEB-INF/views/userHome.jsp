@@ -52,15 +52,18 @@
 									<!-- NAV : 영화 목록 보기(three.js), 영화 분석 페이지 -->
 									<input type="button" style="flex: 0.1;" value="무비 포스터로!" onclick="location.href='movie/moviePoster'">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" style="flex: 0.1;" value="전체 영화 관련 YouTube 분석" onclick="location.href='movie/movieChart'">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<!-- 로그인 닉네임 체크 -->
 									<c:if test="${sessionScope.nickname ne null}">
 										<span>${sessionScope.nickname}님 안녕하세요</span>
 									</c:if>
 									
-									<form id="searchForm" method="post" action="/movie/list">
-										  <input type="text" name="keyword" class="form-control" placeholder="영화 분석 페이지로">
+									<form id="searchForm" method="get" action="/movie/movieList">
+										  <input type="text" id="keyword" name="keyword" class="form-control" placeholder="영화 분석 페이지로">
+										  
 									</form>
-									<input type="button" style="flex: 0.1;" id="analysis" value="search">
+										  <input type="button" id="analysis" style="flex: 0.1;" value="search" onclick="getMovieList()">
 								</header>
 							
 							<!-- Banner : Ajax -->
@@ -279,6 +282,17 @@
 			</div>
 
 			<script>
+				<!--검색-->
+				function getMovieList(){
+					
+					if(!$("#keyword").val()){
+						alert("영화명을 입력하세요");
+						return false;
+					}
+					
+					searchForm.submit();
+				}
+			
 				$(document).ready(function(){ 
 					    // 로딩되기 시작할때
 						$.ajax({

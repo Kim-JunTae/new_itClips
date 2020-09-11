@@ -49,13 +49,22 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public String getAvgBeforeFiltering(String movieId) {
 		log.info("getAvgBeforeFiltering..." + movieId);
-		return mapper.getAvgBeforeFiltering(movieId);
+		String result = mapper.getAvgBeforeFiltering(movieId);
+		if(result != null) {
+			return result;
+		}else{
+			return "none";
+		}
 	}
 	
 	@Override
 	public String getAvgAfterFiltering(String movieId) {
 		log.info("getAvgAfterFiltering..." + movieId);
-		return mapper.getAvgAfterFiltering(movieId);
+		String result = mapper.getAvgAfterFiltering(movieId);
+		if(result != null) {
+			return result;
+		}else{
+			return "none";
+		}
 	}
-	
 }

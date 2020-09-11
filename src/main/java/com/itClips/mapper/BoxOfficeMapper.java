@@ -12,4 +12,6 @@ public interface BoxOfficeMapper {
 	public BoxOfficeVO[] select();
 	
 	public BoxOfficeVO[] getMovieIdList();
+	
+	public BoxOfficeVO[] getMovieList(String keyword);
 }

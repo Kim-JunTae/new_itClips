@@ -51,4 +51,10 @@ public class HomeController {
 		log.info("D3.js Test page");
 		return "d3Test_pie_chart";
 	}
+	
+	@RequestMapping(value = "/test4", method = RequestMethod.GET)
+	public String test4() {
+		log.info("D3.js Test page");
+		return "d3Test_scatterplot_chart";
+	}
 }
