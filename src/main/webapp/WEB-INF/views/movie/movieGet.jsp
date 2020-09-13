@@ -58,9 +58,9 @@
 								<!-- NAV : 영화 목록 보기(three.js), 영화 분석 페이지 -->
 								<input type="button" style="flex: 0.1;" value="무비 포스터로!" onclick="location.href='/movie/moviePoster'">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button" style="flex: 0.1;" value="전체 영화 관련 YouTube 분석" onclick="location.href='movie/movieChart'">
+								<input type="button" style="flex: 0.1;" value="전체 영화 관련 YouTube 분석" onclick="location.href='/movie/movieChart'">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<form id="searchForm" method="post" action="/movie/list">
+								<form id="searchForm" method="get" action="/movie/movieList">
 									  <input type="text" name="keyword" class="form-control" placeholder="영화 분석 페이지로">
 								</form>
 								<input type="button" style="flex: 0.1;" id="analysis" value="search" onclick="getMovieList()">
@@ -74,15 +74,14 @@
 									<table>
 									<tr>
 										<td>
-											<h2>영화명 : ${title}</h2>
-											
+											<h5>영화명 : ${title}</h5>
 											<h5>개봉일 : ${openDt}</h5>
-											<h5>누적관객수 : ${audiAcc}명</h5>
+											<h5>누적관객수 : ${audiAcc}</h5>
 											<h5>필터링 전 평점 평균 : <span id="AvgBefore"></span></h5>
 											<h5>필터링 후 평점 평균 : <span id="AvgAfter"></span></h5>
-											<h5>필터링 후 평점 변화율 : <span id="ChangeRate"></span></h5>
-											<!-- <h5>필터링 전 평점 평균 : <input id="AvgBefore" type="text" readonly="readonly" size="2"></h5>
-											<h5>필터링 후 평점 평균 : <input id="AvgAfter" type="text" readonly="readonly" size="2"></h5> -->
+											<h5>필터링 후 평점 변화율 : <span id="ChangeRate"></span>%</h5>
+											<h5>평가</h5>
+											<h6><span id="Evaluate"></span></h6>
 										</td>
 										<td>
 											<img src="${src}"/>
@@ -94,6 +93,14 @@
 													<span id="tooltip"></span>
 												</span>
 											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<p>
+												평점변화율 = ((필터링 후 평점 평균 - 필터링 전 평점 평균)/필터링 전 평점 평균)*100<br>
+												변화율이 +- 5% 이상일 때 평가
+											</p>
 										</td>
 									</tr>
 									</table>

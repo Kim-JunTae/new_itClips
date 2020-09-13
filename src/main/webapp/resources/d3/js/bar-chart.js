@@ -5,11 +5,12 @@
 	
 	const data = [
 	    {name: 'a', value: 10},
-	    {name: 'b', value: 29},
+	    {name: 'b', value: 100},
 	    {name: 'c', value: 32},
 	    {name: 'd', value: 25},
 	    {name: 'e', value: 23},
-	    {name: 'f', value: 15}
+	    {name: 'f', value: 15},
+	    {name: 'g', value: 45}		
 	  ];
 	 
 	const x = d3.scaleBand()

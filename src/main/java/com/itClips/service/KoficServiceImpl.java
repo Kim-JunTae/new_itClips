@@ -41,4 +41,19 @@ public class KoficServiceImpl implements KoficService{
 		return mapper.insert(vo);
 	}
 	
+	@Override
+	public KoficVO getKoficMovie(String movieId) {
+		log.info("getKoficMovie..." + movieId);
+		KoficVO result = mapper.getKoficMovie(movieId);
+		
+		log.info(result);
+		if(result != null){
+			return result;
+		}else {
+			result = new KoficVO();
+			result.setOpenDt("DB에 데이터가 존재하지 않습니다.");
+			result.setAudiAcc("DB에 데이터가 존재하지 않습니다.");
+			return result;
+		}
+	}
 }

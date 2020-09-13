@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.itClips.domain.BoxOfficeVO;
 import com.itClips.domain.KoficVO;
+import com.itClips.domain.ReviewVO;
 import com.itClips.domain.YouTubeVO;
 import com.itClips.service.BoxOfficeService;
 import com.itClips.service.KoficService;
@@ -139,27 +140,25 @@ public class Scheduler {
 //		System.out.println("scheduler : insertDB_Review");
 //		
 //		//해당 영화 movieId 지정
-//		BoxOfficeVO[] movieIdList = boxOfficeDao.getMovieIdList();
+//		BoxOfficeVO[] movieIdList = boxOfficeService.getMovieIdList();
 //		
 //		Jsoup jsoup = new Jsoup();
 //		
 //		for(int i=0; i<movieIdList.length; i++){
-//			
-//			List<Map<String, String>> reviewList = jsoup.searchMovieReview(movieIdList[i].getMovieId());
+//			String movieId = movieIdList[i].getMovieId();
+//			List<Map<String, String>> reviewList = jsoup.searchMovieReview(movieId);
 //
 //			for(int j=0; j<reviewList.size(); j++) {
 //				ReviewVO review = new ReviewVO();
 //				
-//				
-//				review.setMovieId(movieIdList[i].getMovieId());
+//				review.setMovieId(movieId);
 //				review.setNetizenName(reviewList.get(j).get("netizenName"));
 //				review.setGrade(reviewList.get(j).get("grade"));
 //				review.setReview(reviewList.get(j).get("review"));
 //				review.setReviewDate(reviewList.get(j).get("reviewDate"));
 //				
-//				
-//				if(reviewDao.check(review.getMovieId(), review.getNetizenName())) {
-//					reviewDao.insert(review);
+//				if(reviewService.check(movieId, review.getNetizenName()) == null){
+//					reviewService.insert(review);
 //					System.out.println(movieIdList[i].getMovieId()+" 의 리뷰 정보 저장 성공");
 //				}
 //			}//해당 영화의 리뷰 저장 끝

@@ -9,4 +9,6 @@ public interface KoficMapper {
 	public KoficVO checkKoficMovie(String title);
 	
 	public int insert(KoficVO vo);
+	
+	public KoficVO getKoficMovie(String movieId);
 }

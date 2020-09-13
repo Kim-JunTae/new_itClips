@@ -54,7 +54,7 @@
 								<!-- NAV : 영화 목록 보기(three.js), 영화 분석 페이지 -->
 								<input type="button" style="flex: 0.1;" value="무비 포스터로!" onclick="location.href='/movie/moviePoster'">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="button" style="flex: 0.1;" value="전체 영화 관련 YouTube 분석" onclick="location.href='movie/movieChart'">
+								<input type="button" style="flex: 0.1;" value="전체 영화 관련 YouTube 분석" onclick="location.href='/movie/movieChart'">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<form id="searchForm" method="get" action="/movie/movieList">
 									<input type="text" id="keyword" name="keyword" class="form-control" placeholder="영화 분석 페이지로">

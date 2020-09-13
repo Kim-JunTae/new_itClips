@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -61,7 +61,7 @@
 									
 									<form id="searchForm" method="get" action="/movie/movieList">
 										  <input type="text" id="keyword" name="keyword" class="form-control" placeholder="영화 분석 페이지로">
-										  
+								
 									</form>
 										  <input type="button" id="analysis" style="flex: 0.1;" value="search" onclick="getMovieList()">
 								</header>
@@ -344,7 +344,14 @@
 						
 					  }).done(function(data){
 						console.log(data);
+						
 						//2. movideId로 ITCLIPS_REVIEW의 최신(REVIEW_DATE가 최근이고, 내용이 null이 아닌 것)내용 가져오기
+						  //초기화
+						  for(var i=0; i<6; i++){
+							  var review = "review" + i;
+							  document.getElementById(review).innerHTML = "";
+						  }
+						
 						  for(var i=0; i<6; i++){
 							  var review = "review" + i;
 							  var content = data[i].netizenName+"&nbsp;&nbsp;&nbsp;";
@@ -381,6 +388,12 @@
 						
 					  }).done(function(data){
 						  //console.log(data);
+						  //비디오 초기화
+						  for(i=0; i<3; i++){
+							  var video = "video"+i;
+							  document.getElementById(video).setAttribute('src', "");
+						  }
+						  
 						  for(var i=0; i<data.length; i++){
 							  var video = "video"+i;
 							  //console.log(video);

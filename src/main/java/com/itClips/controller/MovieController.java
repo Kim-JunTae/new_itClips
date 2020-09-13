@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itClips.domain.BoxOfficeVO;
+import com.itClips.domain.KoficVO;
 import com.itClips.domain.ReviewVO;
 import com.itClips.service.BoxOfficeService;
+import com.itClips.service.KoficService;
 import com.itClips.service.ReviewService;
 
 import lombok.AllArgsConstructor;
@@ -34,9 +36,16 @@ public class MovieController {
 	
 	private ReviewService reviewService;
 	
+	private KoficService koficService;
+	
 	@GetMapping(value="/moviePoster")
 	public void moviePoster() {
 		log.info("moviePoster");	
+	}
+	
+	@GetMapping(value="/movieChart")
+	public void movieChart() {
+		log.info("movieChart");	
 	}
 	
 	//검색어(영화 명으로 검색) 있을 때 없을 때 구분해서 나타낼것
@@ -56,13 +65,16 @@ public class MovieController {
 		//log.info("movieGet : " + title);
 		
 		BoxOfficeVO newVo = boxOfficeService.check(vo.getMovieId());
-		
+		KoficVO koficVo = koficService.getKoficMovie(vo.getMovieId());
 		//검색된 영화 키워드를 통해서 영화명을 찾아서 movieId를 가져온다.
 		// Test 용 : String movieId = "125372";
 		
 		model.addAttribute("movieId", vo.getMovieId());
 		model.addAttribute("src", newVo.getSrc());
 		model.addAttribute("title", newVo.getTitle());
+		
+		model.addAttribute("openDt", koficVo.getOpenDt());
+		model.addAttribute("audiAcc", koficVo.getAudiAcc());
 	}
 	
 	
