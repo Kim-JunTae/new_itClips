@@ -75,37 +75,38 @@ public class KOFIC_API {
 		return response;
 	}
 	
-//	public String getYesterday() {
-//	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-//	
-//	Calendar cal = Calendar.getInstance();
-//	cal.add(Calendar.DATE, -1);
-//	
-//	String yesterday = dateFormat.format(cal.getTime());
-//	
-//	return yesterday;
-//}//end getYesterday()
-//
-//public String searchDailyBoxOffice() throws Exception{
-//	
-//	String apiurl = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
-//	apiurl += "?key=3fb8a3781613708291f377177803cf97";
-//	apiurl += "&targetDt=" + getYesterday();
-//	
-//	System.out.println(getYesterday());
-//	
-//	URL url = new URL(apiurl);
-//	HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//	con.setRequestMethod("GET");
-//	
-//	BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-//	String inputLine;
-//	StringBuffer response = new StringBuffer();
-//	while((inputLine = br.readLine()) != null) {
-//		response.append(inputLine);
-//	}
-//	br.close();
-//	
-//	return response.toString();
-//}
+	//일별 박스오피스 데이터 크롤링할 때 사용 : 새벽에 어제 날짜로 크롤링하여 저장
+	public String getYesterday() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		
+		String yesterday = dateFormat.format(cal.getTime());
+		
+		return yesterday;
+	}//end getYesterday()
+
+	public String searchDailyBoxOffice() throws Exception{
+	
+		String apiurl = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
+		apiurl += "?key=3fb8a3781613708291f377177803cf97";
+		apiurl += "&targetDt=" + getYesterday();
+		
+		System.out.println(getYesterday());
+		
+		URL url = new URL(apiurl);
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+		while((inputLine = br.readLine()) != null) {
+			response.append(inputLine);
+		}
+		br.close();
+	
+	return response.toString();
+}
 }
