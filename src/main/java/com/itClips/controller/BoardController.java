@@ -46,15 +46,15 @@ public class BoardController {
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		log.info("register : " + board);
 		service.register(board);
-		rttr.addFlashAttribute("result", board.getBno());
+		rttr.addFlashAttribute("result", board.getBoardId());
 		return "redirect:/board/list";
 	}
 	
 	@GetMapping({"/get","/modify"})
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri")Criteria cri, Model model) {
+	public void get(@RequestParam("boardId") Long boardId, @ModelAttribute("cri")Criteria cri, Model model) {
 		
 		log.info("/get or /modify");
-		model.addAttribute("board", service.get(bno));
+		model.addAttribute("board", service.get(boardId));
 	}
 	
 	@PostMapping("/modify")
@@ -74,9 +74,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, @ModelAttribute("cri")Criteria cri, RedirectAttributes rttr) {
-		log.info("remove..." + bno);
-		if(service.remove(bno)) {
+	public String remove(@RequestParam("boardId") Long boardId, @ModelAttribute("cri")Criteria cri, RedirectAttributes rttr) {
+		log.info("remove..." + boardId);
+		if(service.remove(boardId)) {
 			rttr.addFlashAttribute("result", "succcess");
 		}
 //		rttr.addAttribute("pageNum", cri.getPageNum());

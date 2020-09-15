@@ -36,7 +36,7 @@ public class ReplyMapperTests {
 			ReplyVO vo = new ReplyVO();
 			
 			//게시물 번호
-			vo.setBno(bnoArr[i%5]);
+			vo.setBoardId(bnoArr[i%5]);
 			vo.setReply("댓글 테스트 " + i);
 			vo.setReplyer("replyer" + i);
 			

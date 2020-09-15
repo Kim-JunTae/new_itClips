@@ -5,20 +5,20 @@
 <!-- 패키지 경로 -->
 <mapper namespace="com.itClips.mapper.ReplyMapper">
 	<insert id="insert">
-		insert into tbl_reply (rno, bno, reply, replyer)
+		insert into ITCLIPS_REPLY (rno, bno, reply, replyer)
 		values (seq_reply.nextval, #{bno}, #{reply}, #{replyer})
 	</insert>
 	
 	<select id="read" resultType="com.itClips.domain.ReplyVO">
-		select * from tbl_reply where rno = #{rno}
+		select * from ITCLIPS_REPLY where rno = #{rno}
 	</select>
 	
 	<delete id="delete">
-		delete from tbl_reply where rno = #{rno}
+		delete from ITCLIPS_REPLY where rno = #{rno}
 	</delete>
 	
 	<update id="update">
-		update tbl_reply set reply = #{reply},
+		update ITCLIPS_REPLY set reply = #{reply},
 		updatedate = sysdate where rno = #{rno}
 	</update>
 	
@@ -27,9 +27,9 @@
 		select rno, bno, reply, replyer, replyDate, updateDate
 		from 
 			(
-			select /*+INDEX(tbl_reply idx_reply)*/
+			select /*+INDEX(ITCLIPS_REPLY idx_reply)*/
 				rownum rn, rno, bno, reply, replyer, replyDate, updatedate
-			from tbl_reply
+			from ITCLIPS_REPLY
 			where bno = #{bno}
 			and rno > 0
 			and rownum <= #{cri.pageNum} * #{cri.amount}
@@ -39,7 +39,7 @@
 	
 	<select id="getCountByBno" resultType="int">
 		<![CDATA[
-		select count(rno) from tbl_reply where bno = #{bno}
+		select count(rno) from ITCLIPS_REPLY where bno = #{bno}
 		]]>
 	</select>
 </mapper>

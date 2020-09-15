@@ -45,36 +45,36 @@ public class ReplyController {
 			   : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value="/pages/{bno}/{page}",
+	@GetMapping(value="/pages/{boardId}/{page}",
 		    produces = {MediaType.APPLICATION_ATOM_XML_VALUE,
 		    			MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ReplyPageDTO> getList(
 		@PathVariable("page") int page,
-		@PathVariable("bno") Long bno){
+		@PathVariable("bno") Long boardId){
 	Criteria cri = new Criteria(page, 10);
 	
-	log.info("get Reply List bno : " + bno);
+	log.info("get Reply List boardId : " + boardId);
 	log.info("cri : " + cri);
 	
-	return new ResponseEntity<ReplyPageDTO>(service.getListPage(cri, bno), HttpStatus.OK);
+	return new ResponseEntity<ReplyPageDTO>(service.getListPage(cri, boardId), HttpStatus.OK);
 }
 	
 	
 	@GetMapping(value = "/{rno}",
 				produces= {MediaType.APPLICATION_XML_VALUE,
 						   MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<ReplyVO> get(@PathVariable("rno") Long rno){
-		log.info("get : " + rno);
+	public ResponseEntity<ReplyVO> get(@PathVariable("replyId") Long replyId){
+		log.info("get : " + replyId);
 	
-		return new ResponseEntity<ReplyVO>(service.get(rno), HttpStatus.OK);
+		return new ResponseEntity<ReplyVO>(service.get(replyId), HttpStatus.OK);
 	}	
 	
 	@DeleteMapping(value = "/{rno}",
 			       produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
-		log.info("remove : " + rno);
+	public ResponseEntity<String> remove(@PathVariable("replyId") Long replyId){
+		log.info("remove : " + replyId);
 		
-		return service.remove(rno) == 1
+		return service.remove(replyId) == 1
 			   ? new ResponseEntity<String>("success", HttpStatus.OK)
 			   : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -85,9 +85,9 @@ public class ReplyController {
 					produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modify(
 			@RequestBody ReplyVO vo,
-			@PathVariable("rno") Long rno){
-		vo.setRno(rno);
-		log.info("rno : " + rno);
+			@PathVariable("rno") Long replyId){
+		vo.setReplyId(replyId);
+		log.info("rno : " + replyId);
 		log.info("modify : " + vo);
 		
 		return service.modify(vo) == 1

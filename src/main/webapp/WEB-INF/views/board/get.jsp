@@ -40,9 +40,9 @@
 					<div class="panel-body">
 							
 							<div class="form-group">
-								<label>Bno</label>
-								<input class="form-control" name='bno'
-								       value='<c:out value="${board.bno}"/>' readonly="readonly">
+								<label>boardId</label>
+								<input class="form-control" name='boardId'
+								       value='<c:out value="${board.boardId}"/>' readonly="readonly">
 							</div>
 							
 							<div class="form-group">
@@ -68,7 +68,7 @@
 							<button data-oper='list' class="btn btn-info">List</button>
 							        
 							<form id="operForm" action="/board/modify" method="get">
-								<input type="hidden" id="bno" name="bno" value="<c:out value='${board.bno}'/>"> 
+								<input type="hidden" id="boardId" name="boardId" value="<c:out value='${board.boardId}'/>"> 
 								<input type="hidden" id="pageNum" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
 								<input type="hidden" id="amount" name="amount" value="<c:out value='${cri.amount}'/>">  
 								<input type="hidden" id="amount" name="keyword" value="<c:out value='${cri.keyword}'/>">  
@@ -200,7 +200,7 @@
   	}); */
   	
 	$(document).ready(function(){
-		var bnoValue = '<c:out value="${board.bno}"/>';
+		var boardIdValue = '<c:out value="${board.boardId}"/>';
 		var replyUL = $(".chat");
 		
 		showList(1);
@@ -209,7 +209,7 @@
 			
 			console.log("show list " + page);
 			
-			replyService.getList({bno:bnoValue, page: page||1}, 
+			replyService.getList({boardId:boardIdValue, page: page||1}, 
 			function(replyCnt, list){
 				
 				console.log("replyCnt : " + replyCnt);
@@ -229,9 +229,9 @@
 				}
 				
 				for(var i = 0, len =list.length || 0; i <len; i++){
-					str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+					str +="<li class='left clearfix' data-replyId='"+list[i].replyId+"'>";
 					str +=" <div><div class='header'><strong class='primary-font'>[" 
-							+ list[i].rno +"] " 
+							+ list[i].replyId +"] " 
 							+ list[i].replyer+"</strong>";
 					str +="  <small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
 					str +="   <p>"+list[i].reply+"</p></div></li><hr>";
@@ -267,7 +267,7 @@
 			var reply = {
 				reply: modalInputReply.val(),
 				replyer: modalInputReplyer.val(),
-				bno:bnoValue
+				boardId:boardIdValue
 			};
 			
 			replyService.add(reply, function(result){
@@ -282,15 +282,15 @@
 		
 		//댓글 클릭
 		$(".chat").on("click", "li", function(e){
-			var rno = $(this).data('rno');
+			var replyId = $(this).data('replyId');
 			//console.log(rno);
 			
-			replyService.get(rno, function(reply){
+			replyService.get(replyId, function(reply){
 				modalInputReply.val(reply.reply);
 				modalInputReplyer.val(reply.replyer);
 				modalInputReplyDate.val(replyService.displayTime(reply.replyDate))
 				.attr("readonly","readonly");
-				modal.data("rno", reply.rno);
+				modal.data("replyId", reply.replyId);
 				
 				modal.find("button[id != 'modalCloseBtn']").hide();
 				modalModBtn.show();
@@ -303,7 +303,7 @@
 		//댓글 수정
 		modalModBtn.on("click", function(e){
 			var reply = {
-				rno:modal.data("rno"),
+				replyId:modal.data("replyId"),
 				reply:modalInputReply.val()
 			};
 			
@@ -317,9 +317,9 @@
 		
 		//댓글 삭제
 		modalRemoveBtn.on("click", function(e){
-			var rno = modal.data("rno");
+			var replyId = modal.data("replyId");
 						
-			replyService.remove(rno, function(result){
+			replyService.remove(replyId, function(result){
 				alert(result);
 				modal.modal("hide");
 				
@@ -397,7 +397,7 @@
 		});
 		
 		$('button[data-oper="list"]').on("click", function(e){
-			operForm.find("#bno").remove();
+			operForm.find("#boardId").remove();
 			operForm.attr("action", "/board/list").submit();
 		});
 	});

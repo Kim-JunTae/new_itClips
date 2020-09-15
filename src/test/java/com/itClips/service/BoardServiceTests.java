@@ -37,7 +37,7 @@ public class BoardServiceTests {
 		
 		service.register(board);
 		
-		log.info("생성된 게시물의 번호: " + board.getBno());
+		log.info("생성된 게시물의 번호: " + board.getBoardId());
 	}
 	
 	@Test

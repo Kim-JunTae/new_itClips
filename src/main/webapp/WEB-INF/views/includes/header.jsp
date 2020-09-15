@@ -103,7 +103,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item has-treeview menu-open">
-            <a href="adminHome" class="nav-link active">
+            <a href="/adminHome" class="nav-link active">
               <i class="icon solid fas fa-clipboard-list"></i>
               <p>
                 Dash board
@@ -121,7 +121,7 @@
           </li>
           
           <li class="nav-item has-treeview">
-            <a href="board/table" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Movie Data Tables

@@ -47,9 +47,9 @@
 						</thead>
 						<c:forEach items="${list}" var="board">
 							<tr>
-								<td><c:out value="${board.bno}"/></td>
+								<td><c:out value="${board.boardId}"/></td>
 								<td>
-									<a class="move" href='<c:out value="${board.bno}"/>'>
+									<a class="move" href='<c:out value="${board.boardId}"/>'>
 										<c:out value="${board.title}"/>
 									</a>
 								</td>
@@ -190,7 +190,7 @@
 		
 		$(".move").on("click", function(e){
 			e.preventDefault();
-			actionForm.append("<input type='hidden' name='bno' value='"+
+			actionForm.append("<input type='hidden' name='boardId' value='"+
 					$(this).attr("href")+"'>");
 			actionForm.attr("action", "/board/get");
 			actionForm.submit();

@@ -48,7 +48,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="/userHome" class="logo"><strong><span>itClips</span></strong></a>
+									<a href="/" class="logo"><strong><span>itClips</span></strong></a>
 									<!-- NAV : 영화 목록 보기(three.js), 영화 분석 페이지 -->
 									<input type="button" style="flex: 0.1;" value="무비 포스터로!" onclick="location.href='movie/moviePoster'">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

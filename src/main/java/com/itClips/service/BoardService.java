@@ -9,11 +9,11 @@ public interface BoardService {
 	
 	public void register(BoardVO board);
 	
-	public BoardVO get(Long bno);
+	public BoardVO get(Long boardId);
 	
 	public boolean modify(BoardVO board);
 	
-	public boolean remove(Long bno);
+	public boolean remove(Long boardId);
 	
 	//public List<BoardVO> getList();
 	

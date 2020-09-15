@@ -37,9 +37,9 @@
 							<input type="hidden" id="amount" name="type" value="<c:out value='${cri.type}'/>">
 							
 							<div class="form-group">
-								<label>Bno</label>
-								<input class="form-control" name='bno'
-								       value='<c:out value="${board.bno}"/>' readonly="readonly">
+								<label>BoardId</label>
+								<input class="form-control" name='boardId'
+								       value='<c:out value="${board.boardId}"/>' readonly="readonly">
 							</div>
 							
 							<div class="form-group">
